@@ -1,4 +1,4 @@
-from player import HumanPlayer, RandomComputerPlayer
+from player import HumanPlayer, GeniusComputerPlayer, RandomComputerPlayer
 import time
 import math
 
@@ -18,20 +18,6 @@ class TicTacToe:
         for row in number_board:
             print('| ' + ' | '. join(row) + ' |' )
 
-    def available_moves(self):
-        return [i for i, spot in enumerate(self.board) if spot == ' ']
-        # moves=[]
-        # for (i,spot) in enumerate(self.board):
-        #     ['x','x','o'] --> [(0,'x'), (1,'x'), (2,'o')]
-        #     if spot == ' ':
-        #         moves.append(i)
-        # return moves
-    def empty_squares(self):
-        return ' ' in self.board
-
-    def num_empty_squares(self):
-        return self.board.count(' ')
-    
     def make_move(self, square, letter):
         if self.board[square] == ' ':
             self.board[square] = letter
@@ -63,6 +49,21 @@ class TicTacToe:
                 return True
         # if all the conditions of diagonals are not met    
         return False
+    
+    def empty_squares(self):
+        return ' ' in self.board
+
+    def num_empty_squares(self):
+        return self.board.count(' ')
+
+    def available_moves(self):
+        return [i for i, spot in enumerate(self.board) if spot == ' ']
+        # moves=[]
+        # for (i,spot) in enumerate(self.board):
+        #     ['x','x','o'] --> [(0,'x'), (1,'x'), (2,'o')]
+        #     if spot == ' ':
+        #         moves.append(i)
+        # return moves   
         
 def play(game, x_player, o_player, print_game = True):
     #returnng the winner of the game, even if it is a tie
@@ -97,6 +98,6 @@ def play(game, x_player, o_player, print_game = True):
 
 if __name__ == '__main__':
     x_player = HumanPlayer('X')
-    o_player = RandomComputerPlayer('O')
+    o_player = GeniusComputerPlayer('O')
     t = TicTacToe()
     play(t, x_player, o_player, print_game=True)
