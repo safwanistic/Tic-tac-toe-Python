@@ -1,7 +1,8 @@
 from player import HumanPlayer, RandomComputerPlayer
+import time
 
 class TicTacToe:
-    def __init__(self) -> None:
+    def __init__(self):
         self.board = [' ' for _ in range(9)] #Using single list to represent a 3x3 board
         self.current_winner = None
 
@@ -34,13 +35,13 @@ class TicTacToe:
         if self.board[square] == ' ':
             self.board[square] = letter
             if self.winner(square, letter):
-                self.current_winner=letter
+                self.current_winner = letter
             return True
         return False
 
     def winner(self, square, letter):
         # Checking Rows
-        row_index = square //3  
+        row_index = square // 3  
         row =self.board[row_index*3:(row_index+1)*3]
         if all([spot == letter for spot in row]):
             return True
@@ -52,7 +53,7 @@ class TicTacToe:
             return True
 
         # Checking diagonal
-        if square%2 ==0:
+        if square%2 == 0 :
             diagonal1 =[self.board[i] for i in [0, 4, 8]] #left to right diagonal  ' / '
             if all([spot == letter for spot in diagonal1]):
                 return True
@@ -72,9 +73,9 @@ def play(game, x_player, o_player, print_game = True):
             square = o_player.get_move(game)
         else:
             square = x_player.get_move(game)
-        if game.make_move(square,letter):
+        if game.make_move(square, letter):
             if print_game:
-                print(letter + f' make a move to square {square}')
+                print(letter + f' makes a move to square {square}')
                 game.print_board()
                 print('')
 
@@ -88,6 +89,8 @@ def play(game, x_player, o_player, print_game = True):
             #     letter ='O'
             # else:
             #     letter ='X'
+        #Smol break for computer move
+        time.sleep(0.8)
     if print_game:
             print('MATCH DRAWN')
 
