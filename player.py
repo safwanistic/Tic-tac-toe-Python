@@ -15,6 +15,7 @@ class RandomComputerPlayer(Player):
 
     def get_move(self, game):
         square = random.choice(game.available_moves())
+        return square
 
 
 
