@@ -18,7 +18,20 @@ class TicTacToe:
         for row in number_board:
             print('| ' + ' | '. join(row) + ' |' )
 
-        
+    def available_moves(self):
+        return [i for i, spot in enumerate(self.board) if spot == ' ']
+        # moves=[]
+        # for (i,spot) in enumerate(self.board):
+        #     ['x','x','o'] --> [(0,'x'), (1,'x'), (2,'o')]
+        #     if spot == ' ':
+        #         moves.append(i)
+        # return moves
+    def empty_squares(self):
+        return ' ' in self.board
+
+    def num_empty_squares(self):
+        return self.board.count(' ')
+    
     def make_move(self, square, letter):
         if self.board[square] == ' ':
             self.board[square] = letter
@@ -50,20 +63,6 @@ class TicTacToe:
                 return True
         # if all the conditions of diagonals are not met    
         return False
-    
-    def available_moves(self):
-        return [i for i, spot in enumerate(self.board) if spot == ' ']
-        # moves=[]
-        # for (i,spot) in enumerate(self.board):
-        #     ['x','x','o'] --> [(0,'x'), (1,'x'), (2,'o')]
-        #     if spot == ' ':
-        #         moves.append(i)
-        # return moves
-    def empty_squares(self):
-        return ' ' in self.board
-
-    def num_empty_squares(self):
-        return self.board.count(' ')
         
 def play(game, x_player, o_player, print_game = True):
     #returnng the winner of the game, even if it is a tie
@@ -92,7 +91,7 @@ def play(game, x_player, o_player, print_game = True):
             # else:
             #     letter ='X'
         #Smol break for computer move
-        time.sleep(.8)
+        time.sleep(0.8)
     if print_game:
             print('MATCH DRAWN')
 
