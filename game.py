@@ -88,7 +88,7 @@ def play(game, x_player, o_player, print_game = True):
             #     letter ='O'
             # else:
             #     letter ='X'
-        if print_game:
+    if print_game:
             print('MATCH DRAWN')
 
 if __name__ == '__main__':
