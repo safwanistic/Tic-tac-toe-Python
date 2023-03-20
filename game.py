@@ -1,3 +1,5 @@
+from player import HumanPlayer, RandomComputerPlayer
+
 class TicTacToe:
     def __init__(self) -> None:
         self.board = [' ' for _ in range(9)] #Using single list to represent a 3x3 board
@@ -57,7 +59,9 @@ class TicTacToe:
             diagonal2 =[self.board[i] for i in [2, 4, 6]] #Right to left diagonal ' \ '
             if all([spot == letter for spot in diagonal2]):
                 return True
-
+        # if all the conditions of diagonals are not met    
+        return False
+        
 def play(game, x_player, o_player, print_game = True):
     #returnng the winner of the game, even if it is a tie
     if print_game: 
@@ -86,3 +90,9 @@ def play(game, x_player, o_player, print_game = True):
             #     letter ='X'
         if print_game:
             print('MATCH DRAWN')
+
+if __name__ == '__main__':
+    x_player = HumanPlayer('X')
+    o_player = RandomComputerPlayer('O')
+    t = TicTacToe()
+    play(t, x_player, o_player, print_game=True)
